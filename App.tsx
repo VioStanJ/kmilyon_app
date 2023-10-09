@@ -17,7 +17,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={SplashScreen} />
+        <Stack.Screen name="Home" component={SplashScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
