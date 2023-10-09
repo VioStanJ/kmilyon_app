@@ -6,30 +6,20 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  View,
-  Text,
-  Image,
-} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SplashScreen from './Screen/SlashScreen';
 
-function App(): JSX.Element {
+const Stack = createNativeStackNavigator();
+
+function App() {
 
   return (
-    <SafeAreaView>
-      <StatusBar
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic">
-        <View>
-          <Text>Hello World</Text>
-          <Image
-            source={require('./assets/img/logo.png')}/>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={SplashScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
