@@ -6,7 +6,7 @@ import { Label } from 'tamagui'
 import { H1, H2, H3, H4, H5, H6, Heading } from 'tamagui'
 import Container from '../Components/Container'
 
-const Login = () => {
+const Login = ({ navigation }) => {
     return (
         <Container>
             <View style={{flex:1}}>
@@ -39,7 +39,7 @@ const Login = () => {
 
             <View style={{flex:1,alignContent:'center',justifyContent:'center',flexDirection:'row',marginTop:30}}>
                 <Text>Don't have an Account ? </Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPressOut={()=>navigation.navigate('signup')}>
                     <Text> Sign Up</Text>
                 </TouchableOpacity>
             </View>

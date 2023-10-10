@@ -1,7 +1,7 @@
 import React from 'react'
 import { SafeAreaView,ScrollView,View,Text } from 'react-native'
 
-const PrototypeClass = () => {
+const PrototypeClass = ({ navigation }) => {
     return (
         <SafeAreaView>
             <ScrollView>
