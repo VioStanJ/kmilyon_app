@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js" integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    
+    <script>
+        let url = 'http://54.83.81.247';
+        
+        axios.post(url+'/api/v1/token/',{'email':'viostanojguerrier@gmail.com','password':'P@ss0011'})
+            .then((response)=>{
+                console.warn("test");
+                console.warn(response);
+            }).catch((error)=>{
+                console.warn("error",error);
+            })
+    </script>
+</body>
+</html>

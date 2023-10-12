@@ -3,14 +3,16 @@ import { View, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 
 const SplashScreen = ({ navigation }) => {
+
   useEffect(() => {
-    // Execute code afeter 2 seconds
+    // Execute code after 2 seconds
     setTimeout(()=>{
       // Check if 'is_connect' is set in AsyncStorage
       AsyncStorage.getItem('is_connect')
         .then((connect) => {
           try {
             // Parse the value as JSON
+
             const isConnected = JSON.parse(connect);
 
             if (isConnected) {
