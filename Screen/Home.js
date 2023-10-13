@@ -4,7 +4,7 @@ import { SafeAreaView,ScrollView,View,Text } from 'react-native'
 
 const Home = () => {
     try {
-        AsyncStorage.setItem('is_connect',"false")
+        // AsyncStorage.setItem('is_connect',"false")
     } catch (error) {
         
     }
