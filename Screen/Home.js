@@ -8,6 +8,7 @@ const Home = () => {
     } catch (error) {
         
     }
+
     return (
         <SafeAreaView>
             <ScrollView>

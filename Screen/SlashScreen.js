@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
+import { PRIMARY_LIGHT } from '../styles';
 
 const SplashScreen = ({ navigation }) => {
 
@@ -35,7 +36,7 @@ const SplashScreen = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <View style={{ flex: 1, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', backgroundColor:PRIMARY_LIGHT}}>
       <Image
         source={require('./../assets/img/logo.png')}
         style={{ width: 200, height: 200 }}

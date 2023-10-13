@@ -1,21 +1,23 @@
 import React from 'react'
-import { SafeAreaView,ScrollView,View } from 'react-native'
+import { SafeAreaView,ScrollView,View,ImageBackground } from 'react-native'
 import {StyleSheet,} from 'react-native';
+import frame from './../assets/img/frame.png'
 
 export default Container = (props) => {
+
     return (
-        <View style={[styles.container,
-                {flexDirection: 'column',backgroundColor:'#d5d5d5'},
-            ]}>
+        <ImageBackground source={frame} resizeMode='cover'
+            style={[styles.container,{flexDirection: 'column'},]}>
+
             {props.children}
-        </View>
+
+        </ImageBackground>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      flexGrow:1,
-      paddingTop:60
+      flexGrow:1
     },
   });
