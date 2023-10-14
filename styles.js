@@ -18,5 +18,8 @@ export const styles = StyleSheet.create({
     input:{
         backgroundColor:'white',
         borderColor:'#B4A6BE'
+    },
+    avatar:{
+        borderRadius:50,
     }
 });

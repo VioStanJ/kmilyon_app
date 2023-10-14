@@ -1,16 +1,15 @@
 import React from 'react'
-import { H3, H4, H6, Image, View } from 'tamagui'
+import { H2, H4, H6, Image, View } from 'tamagui'
 import user from './../assets/img/user.png'
-import notif from './../assets/img/notification.png'
 import actif from './../assets/img/notification_active.png'
-import { Text } from 'react-native'
+import { HOST, MEDIA } from '../const'
+import { styles } from '../styles'
 
 export const Header = (props) => {
-    console.warn('USER',props.user);
     return (
         <View style={{backgroundColor:'transparent',height:70,flexDirection:'row',justifyContent:'space-between',marginTop:30,paddingLeft:20,paddingRight:20,marginBottom:20}}>
             <View style={{}}>
-                <H4 style={{position:'relative',top:2}}>{props.title??'Welcome'}</H4>
+                <H2 style={{position:'relative',top:-2}}>{props.title??'Welcome'}</H2>
                 <Image source={actif} style={{height:30,width:30,position:'relative',top:-4}}/>
             </View>
             <View style={{flexDirection:'row',flexBasis:'49%',justifyContent:'flex-end'}}>
@@ -22,7 +21,7 @@ export const Header = (props) => {
                     </View>
                     :null
                 }
-                <Image source={user} style={{height:45,width:45,marginTop:6,marginLeft:8}}/>
+                <Image source={props.user?{uri:HOST+MEDIA+props.user.avatar}:user} style={[styles.avatar,{height:45,width:45,marginTop:6,marginLeft:8}]}/>
             </View>
         </View>
     ) 

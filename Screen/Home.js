@@ -26,6 +26,7 @@ const Tab = createBottomTabNavigator();
 
 export default Home = ({ navigation }) => {
   // State
+  const [title,setTitle] = useState('Welcome');
   const [opacityHome,setOpacityHome] = useState(false);
   const [user,setUser] = useState({id:0,email:""});
   const [userProfile,setUserProfile] = useState({code:'',firstname:'',lastname:'',avatar:null,is_verified:false,sex:'',phone:''})
@@ -69,7 +70,7 @@ export default Home = ({ navigation }) => {
     return (
       <>
         {/* Header */}
-        <Header title="TEST" style={{backgroundColor:'transparent',}} user={userProfile} />
+        <Header title={title} style={{backgroundColor:'transparent',}} user={userProfile} />
         {/* <Button >GET USER</Button> */}
         <Tab.Navigator
             
@@ -111,6 +112,7 @@ export default Home = ({ navigation }) => {
           }} listeners={({ navigation, route }) => ({
             // Onpress Update....
             tabPress: e => {
+              setTitle('Ticket')
               Animated.spring(tabOffsetValue, {
                 toValue: 0,
                 useNativeDriver: true
@@ -131,6 +133,7 @@ export default Home = ({ navigation }) => {
           }} listeners={({ navigation, route }) => ({
             // Onpress Update....
             tabPress: e => {
+              setTitle('Game')
               Animated.spring(tabOffsetValue, {
                 toValue: getWidth(),
                 useNativeDriver: true
@@ -166,6 +169,8 @@ export default Home = ({ navigation }) => {
             // Onpress Update....
             tabPress: e => {
                 setOpacityHome(true)
+                setTitle('Welcome')
+
               Animated.spring(tabOffsetValue, {
                 toValue: getWidth() * 2,
                 useNativeDriver: true
@@ -189,6 +194,7 @@ export default Home = ({ navigation }) => {
           }} listeners={({ navigation, route }) => ({
             // Onpress Update....
             tabPress: e => {
+              setTitle('Wallet')
               Animated.spring(tabOffsetValue, {
                 toValue: getWidth() * 3,
                 useNativeDriver: true
@@ -209,6 +215,7 @@ export default Home = ({ navigation }) => {
           }} listeners={({ navigation, route }) => ({
             // Onpress Update....
             tabPress: e => {
+              setTitle('Profile')
               Animated.spring(tabOffsetValue, {
                 toValue: getWidth() * 4,
                 useNativeDriver: true
