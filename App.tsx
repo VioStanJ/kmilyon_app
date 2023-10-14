@@ -24,6 +24,7 @@ function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="/" component={SplashScreen} options={{headerShown: false}}/>
+            <Stack.Screen name="back" component={SplashScreen} options={{headerShown: false}}/>
             <Stack.Screen name="home" component={Home} options={{headerShown: false}}/>
             <Stack.Screen name="login" component={Login} options={{headerShown: false}}/>
             <Stack.Screen name="signup" component={SignUp} options={{headerShown: false}}/>

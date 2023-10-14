@@ -14,8 +14,8 @@ import bout from './../assets/img/bout.png';
 
 const Login = ({ navigation }) => {
 
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
+    const [email,setEmail] = useState('janedoe@gmail.com')
+    const [password,setPassword] = useState('pass0011')
     
 
     function signIn() {
@@ -29,7 +29,9 @@ const Login = ({ navigation }) => {
                         AsyncStorage.setItem('access_token',JSON.stringify(response.data.access));
                         AsyncStorage.setItem('refresh_token',JSON.stringify(response.data.refresh));
                         AsyncStorage.setItem('is_connect',"true");
-                        navigation.navigate('home');
+                        setTimeout(()=>{
+                            navigation.navigate('home');
+                        },100);
                     } catch (error) {
                         
                     }

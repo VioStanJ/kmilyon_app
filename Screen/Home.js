@@ -10,7 +10,7 @@ import ticket from './../assets/img/ticket.png'
 import profile from './../assets/img/profile.png'
 import game from './../assets/img/game.png'
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PRIMARY } from '../styles';
 import HomeContent from './HomeContent';
 import { Header } from '../Components/Header';
@@ -19,16 +19,25 @@ import Ticket from './Ticket';
 import Game from './Game';
 import Wallet from './Wallet';
 import Profile from './Profile';
+import axios from './../axiosInterceptor';
 
 const Tab = createBottomTabNavigator();
 
-export default function Home() {
+export default Home = ({ navigation }) => {
     const [opacityHome,setOpacityHome] = useState(false);
+
+    useEffect( ()=>{
+        axios.get('/profile').then((response)=>{
+          console.warn('RESP',response);
+        }).catch((error)=>{
+          console.warn("ERR",error);
+        })
+    })
 
     // Animated Tab Indicator...
     const tabOffsetValue = useRef(new Animated.Value(0)).current;
     return (
-      <NavigationContainer independent={true}>
+      <>
         <Header style={{backgroundColor:'transparent',}}/>
         <Tab.Navigator
             
@@ -101,7 +110,7 @@ export default function Home() {
             // Extra Tab Screen For Action Button..
           }
   
-          <Tab.Screen name={"Home"} component={HomeContent}  options={{
+          <Tab.Screen name={"HomeContent"} component={HomeContent}  options={{
             tabBarIcon: ({ focused }) => (
   
                 <View style={{
@@ -193,7 +202,7 @@ export default function Home() {
         }}>
   
         </Animated.View>
-      </NavigationContainer>
+      </>
     );
   }
   
