@@ -112,7 +112,8 @@ export default function Home() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   marginBottom: Platform.OS == "android" ? 50 : 30,
-                  opacity:opacityHome?0.9:1
+                  opacity:opacityHome?0.9:1,
+                  zIndex:9999999
                 }} onPress={()=>console.warn("press")}>
                   <Image source={home} style={{
                     width: 22,
@@ -185,6 +186,7 @@ export default function Home() {
           bottom: 88,
           left: 50,
           borderRadius: 20,
+          zIndex:99999,
           transform: [
             { translateX: tabOffsetValue }
           ]

@@ -1,16 +1,15 @@
 import React from 'react'
 import { SafeAreaView,ScrollView,View,Text } from 'react-native'
 import Container from '../Components/Container';
+import Content from '../Components/Content';
 
 const Wallet = ({ navigation }) => {
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <View>
-                    <Text>Wallet</Text>
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+        <Content>
+            <View>
+                <Text>Wallet</Text>
+            </View>
+        </Content>
     )
 }
 
