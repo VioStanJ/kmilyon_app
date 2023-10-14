@@ -9,8 +9,8 @@ export const Header = (props) => {
     return (
         <View style={{backgroundColor:'transparent',height:70,flexDirection:'row',justifyContent:'space-between',marginTop:30,paddingLeft:20,paddingRight:20,marginBottom:20}}>
             <View style={{}}>
-                <H4>{props.title??'Welcome'}</H4>
-                <Image source={actif} style={{height:30,width:30}}/>
+                <H4 style={{position:'relative',top:2}}>{props.title??'Welcome'}</H4>
+                <Image source={actif} style={{height:30,width:30,position:'relative',top:-4}}/>
             </View>
             <View style={{flexDirection:'row',flexBasis:'49%',justifyContent:'flex-end'}}>
                 <View style={{alignItems:'flex-end',}}>

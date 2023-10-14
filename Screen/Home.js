@@ -15,6 +15,10 @@ import { PRIMARY } from '../styles';
 import HomeContent from './HomeContent';
 import { Header } from '../Components/Header';
 import { getHeaderTitle } from '@react-navigation/elements';
+import Ticket from './Ticket';
+import Game from './Game';
+import Wallet from './Wallet';
+import Profile from './Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -54,7 +58,7 @@ export default function Home() {
             // Tab Screens....
             // Tab ICons....
           }
-          <Tab.Screen name={"Ticket"} component={HomeScreen} options={{
+          <Tab.Screen name={"Ticket"} component={Ticket} options={{
             tabBarIcon: ({ focused }) => (
               <View style={{
                 // centring Tab Button...
@@ -74,7 +78,7 @@ export default function Home() {
             }
           })}></Tab.Screen>
   
-          <Tab.Screen name={"Game"} component={SearchScreen} options={{
+          <Tab.Screen name={"Game"} component={Game} options={{
             tabBarIcon: ({ focused }) => (
               <View style={{
                 // centring Tab Button...
@@ -131,7 +135,7 @@ export default function Home() {
             }
           })}></Tab.Screen>
   
-          <Tab.Screen name={"Wallet"} component={NotificationScreen} options={{
+          <Tab.Screen name={"Wallet"} component={Wallet} options={{
             tabBarIcon: ({ focused }) => (
               <View style={{
                 // centring Tab Button...
@@ -151,7 +155,7 @@ export default function Home() {
             }
           })}></Tab.Screen>
   
-          <Tab.Screen name={"Profile"} component={SettingsScreen} options={{
+          <Tab.Screen name={"Profile"} component={Profile} options={{
             tabBarIcon: ({ focused }) => (
               <View style={{
                 // centring Tab Button...
@@ -200,52 +204,3 @@ export default function Home() {
     // Total five Tabs...
     return width / 5
   }
-  
-  function EmptyScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Empty</Text>
-      </View>
-    );
-  }
-  
-  function SettingsScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-  
-  function HomeScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-  
-  function NotificationScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Notifications!</Text>
-      </View>
-    );
-  }
-  
-  function SearchScreen() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Search!</Text>
-      </View>
-    );
-  }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
