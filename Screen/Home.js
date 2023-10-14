@@ -3,13 +3,18 @@ import { Animated, Dimensions, Image, Platform, StyleSheet, Text, TouchableOpaci
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Plus } from '@tamagui/lucide-icons'
 // Plus...
-import plus from './../assets/img/plus.png'
+import home from './../assets/img/home.png'
+import wallet from './../assets/img/wallet.png'
+import ticket from './../assets/img/ticket.png'
+import profile from './../assets/img/profile.png'
+import game from './../assets/img/game.png'
 
 import { useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PRIMARY } from '../styles';
+import HomeContent from './HomeContent';
+import { Header } from '../Components/Header';
+import { getHeaderTitle } from '@react-navigation/elements';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,42 +26,49 @@ export default function Home() {
     return (
       <NavigationContainer independent={true}>
         <Tab.Navigator
-         screenOptions={{
-            tabBarStyle: { 
-                backgroundColor: 'white',
-            position: 'absolute',
-            bottom: 40,
-            marginHorizontal: 20,
-            // Max Height...
-            height: 60,
-            borderRadius: 50,
-            // Shadow...
-            shadowColor: '#000',
-            shadowOpacity: 0.06,
-            shadowOffset: {
-              width: 10,
-              height: 10
-            },
-            paddingHorizontal: 20,
-             },
-          }}
-        tabBarOptions={{
-          showLabel: false,
-        }}>
+            
+            screenOptions={{
+                tabBarShowLabel:false,
+
+                tabBarStyle: { 
+                        backgroundColor: 'white',
+                        position: 'absolute',
+                        bottom: 30,
+                        marginHorizontal: 20,
+                        height: 60,
+                        borderRadius: 50,
+                        shadowColor: '#000',
+                        shadowOpacity: 0.06,
+                        shadowOffset: {
+                        width: 10,
+                        height: 10
+                    },
+                    paddingHorizontal: 20,
+                },
+
+                header : ({ navigation, route, options }) => {
+                    const title = getHeaderTitle(options, route.name);
+                
+                    return <Header title={title} style={options.headerStyle}/>;
+                  },
+                headerStyle:{
+                    backgroundColor:'red',
+                }
+                
+            }}>
   
           {
             // Tab Screens....
-  
             // Tab ICons....
           }
-          <Tab.Screen name={"Home"} component={HomeScreen} options={{
+          <Tab.Screen name={"Ticket"} component={HomeScreen} options={{
             tabBarIcon: ({ focused }) => (
               <View style={{
                 // centring Tab Button...
                 position: 'absolute',
                 top: 20
               }}>
-                <Image source={plus} style={{width:20,height:20}}/>
+                <Image source={ticket} style={{width:20,height:20}}/>
               </View>
             )
           }} listeners={({ navigation, route }) => ({
@@ -69,14 +81,14 @@ export default function Home() {
             }
           })}></Tab.Screen>
   
-          <Tab.Screen name={"Search"} component={SearchScreen} options={{
+          <Tab.Screen name={"Game"} component={SearchScreen} options={{
             tabBarIcon: ({ focused }) => (
               <View style={{
                 // centring Tab Button...
                 position: 'absolute',
                 top: 20
               }}>
-                <Image source={plus} style={{width:20,height:20}}/>
+                <Image source={game} style={{width:20,height:20}}/>
               </View>
             )
           }} listeners={({ navigation, route }) => ({
@@ -88,14 +100,11 @@ export default function Home() {
               }).start();
             }
           })}></Tab.Screen>
-  
-  
           {
-  
             // Extra Tab Screen For Action Button..
           }
   
-          <Tab.Screen name={"ActionButton"} component={EmptyScreen}  options={{
+          <Tab.Screen name={"Home"} component={HomeContent}  options={{
             tabBarIcon: ({ focused }) => (
   
                 <View style={{
@@ -106,9 +115,9 @@ export default function Home() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   marginBottom: Platform.OS == "android" ? 50 : 30,
-                  opacity:opacityHome?0.8:1
+                  opacity:opacityHome?0.9:1
                 }} onPress={()=>console.warn("press")}>
-                  <Image source={plus} style={{
+                  <Image source={home} style={{
                     width: 22,
                     height: 22,
                     tintColor: 'white',
@@ -129,19 +138,14 @@ export default function Home() {
             }
           })}></Tab.Screen>
   
-          <Tab.Screen name={"Notifications"} component={NotificationScreen} options={{
+          <Tab.Screen name={"Wallet"} component={NotificationScreen} options={{
             tabBarIcon: ({ focused }) => (
               <View style={{
                 // centring Tab Button...
                 position: 'absolute',
                 top: 20
               }}>
-                {/* <FontAwesomeIcon
-                  name="bell"
-                  size={20}
-                  color={focused ? 'red' : 'gray'}
-                ></FontAwesomeIcon> */}
-                <Image source={plus} style={{width:20,height:20}}/>
+                <Image source={wallet} style={{width:20,height:20}}/>
               </View>
             )
           }} listeners={({ navigation, route }) => ({
@@ -154,14 +158,14 @@ export default function Home() {
             }
           })}></Tab.Screen>
   
-          <Tab.Screen name={"Settings"} component={SettingsScreen} options={{
+          <Tab.Screen name={"Profile"} component={SettingsScreen} options={{
             tabBarIcon: ({ focused }) => (
               <View style={{
                 // centring Tab Button...
                 position: 'absolute',
                 top: 20
               }}>
-                <Image source={plus} style={{width:20,height:20}}/>
+                <Image source={profile} style={{width:20,height:20}}/>
               </View>
             )
           }} listeners={({ navigation, route }) => ({
@@ -181,8 +185,7 @@ export default function Home() {
           height: 2,
           backgroundColor: PRIMARY,
           position: 'absolute',
-          bottom: 98,
-          // Horizontal Padding = 20...
+          bottom: 88,
           left: 50,
           borderRadius: 20,
           transform: [
