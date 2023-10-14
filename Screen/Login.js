@@ -14,7 +14,7 @@ import bout from './../assets/img/bout.png';
 
 const Login = ({ navigation }) => {
 
-    const [email,setEmail] = useState('janedoe@gmail.com')
+    const [email,setEmail] = useState('janedoe23@gmail.com')
     const [password,setPassword] = useState('pass0011')
     
 

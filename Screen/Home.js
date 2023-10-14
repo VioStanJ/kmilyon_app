@@ -20,25 +20,57 @@ import Game from './Game';
 import Wallet from './Wallet';
 import Profile from './Profile';
 import axios from './../axiosInterceptor';
+import { Button } from 'tamagui';
 
 const Tab = createBottomTabNavigator();
 
 export default Home = ({ navigation }) => {
-    const [opacityHome,setOpacityHome] = useState(false);
+  // State
+  const [opacityHome,setOpacityHome] = useState(false);
+  const [user,setUser] = useState({id:0,email:""});
+  const [userProfile,setUserProfile] = useState({code:'',firstname:'',lastname:'',avatar:null,is_verified:false,sex:'',phone:''})
+  const [account,setAccount] = useState({user: 25,point: 0,point_bonus: 0,active: false,status: true})
 
-    useEffect( ()=>{
-        axios.get('/profile').then((response)=>{
-          console.warn('RESP',response);
-        }).catch((error)=>{
-          console.warn("ERR",error);
-        })
+  //  Init User Data
+
+  const initUser = async () => {
+      AsyncStorage.getItem('profile').then((profile)=>{
+        setUserProfile(JSON.parse(profile));
+      });
+  }
+
+  // Fucntions Get Data From Server
+  const fetchProfile = async () => {
+
+    axios.get('/profile').then((response)=>{
+      if(response.data.success){
+        console.warn(response.data,'DATA');
+        AsyncStorage.setItem('user',JSON.stringify(response.data.user));
+        setUser(response.data.user);
+        AsyncStorage.setItem('profile',JSON.stringify(response.data.profile));
+        setUserProfile(response.data.profile);
+        AsyncStorage.setItem('account',JSON.stringify(response.data.account));
+        setAccount(response.data.account);
+      }
+    }).catch((error)=>{
+      console.warn("ERR",error);
     })
+
+  }
+
+  // Effect
+  useEffect(() => {
+    initUser();
+    fetchProfile();
+  }, []);
 
     // Animated Tab Indicator...
     const tabOffsetValue = useRef(new Animated.Value(0)).current;
     return (
       <>
-        <Header style={{backgroundColor:'transparent',}}/>
+        {/* Header */}
+        <Header title="TEST" style={{backgroundColor:'transparent',}} user={userProfile} />
+        {/* <Button >GET USER</Button> */}
         <Tab.Navigator
             
             screenOptions={{
@@ -60,7 +92,6 @@ export default Home = ({ navigation }) => {
                     },
                     paddingHorizontal: 20,
                 },
-                // header:{}
             }}>
   
           {

@@ -13,12 +13,9 @@ AsyncStorage.getItem('access_token').then((access)=>{
 // Request interceptor
 axios.interceptors.request.use(
   (config) => {
-    console.warn('TOK',token);
-    console.warn('URL',config.baseURL);
-    config.headers.Authorization = `Bearer ${token}`;
-    
     // Do something before the request is sent (e.g., add headers)
-    console.warn('Do something before the request is sent (e.g., add headers)');
+    console.warn('TOK',token);
+    config.headers.Authorization = `Bearer ${token}`;    
     return config;
   },
   (error) => {
