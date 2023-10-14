@@ -4,13 +4,13 @@ import Container from '../Components/Container';
 
 const HomeContent = ({ navigation }) => {
     return (
-        <Container>
+        <SafeAreaView>
             <ScrollView>
                 <View>
                     <Text>Home Content</Text>
                 </View>
             </ScrollView>
-        </Container>
+        </SafeAreaView>
     )
 }
 

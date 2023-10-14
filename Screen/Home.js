@@ -25,9 +25,11 @@ export default function Home() {
     const tabOffsetValue = useRef(new Animated.Value(0)).current;
     return (
       <NavigationContainer independent={true}>
+        <Header style={{backgroundColor:'transparent',}}/>
         <Tab.Navigator
             
             screenOptions={{
+                headerShown:false,
                 tabBarShowLabel:false,
 
                 tabBarStyle: { 
@@ -45,16 +47,7 @@ export default function Home() {
                     },
                     paddingHorizontal: 20,
                 },
-
-                header : ({ navigation, route, options }) => {
-                    const title = getHeaderTitle(options, route.name);
-                
-                    return <Header title={title} style={options.headerStyle}/>;
-                  },
-                headerStyle:{
-                    backgroundColor:'red',
-                }
-                
+                // header:{}
             }}>
   
           {
