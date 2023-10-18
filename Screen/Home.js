@@ -45,7 +45,7 @@ export default Home = ({ navigation }) => {
 
     axios.get('/profile').then((response)=>{
       if(response.data.success){
-        console.warn(response.data,'DATA');
+        console.warn(response.data.user.avatar,'DATA');
         AsyncStorage.setItem('user',JSON.stringify(response.data.user));
         setUser(response.data.user);
         AsyncStorage.setItem('profile',JSON.stringify(response.data.profile));

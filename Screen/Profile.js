@@ -15,6 +15,9 @@ const Profile = () => {
             AsyncStorage.setItem('is_connect','false');
             AsyncStorage.setItem('access_token','');
             AsyncStorage.setItem('refresh_token','');
+            AsyncStorage.setItem('user','');
+            AsyncStorage.setItem('profile','');
+            AsyncStorage.setItem('account','');
             navigation.navigate('login')
         } catch (error) {
             console.warn('Fail to disconnect',error);
