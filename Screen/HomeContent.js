@@ -1,38 +1,55 @@
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView,ScrollView,View,Text } from 'react-native'
+import { View,Text,Image,Dimensions } from 'react-native'
 import axios from './../axiosInterceptor';
+import Content from '../Components/Content';
+import { HOST, MEDIA, getWidth } from '../const';
+import CarouselCards from '../Components/CarouselCards';
+import ImageSlider from 'react-native-image-slider';
 
 const HomeContent = ({ navigation }) => {
 
-    const [games,setGames] = useState([]);
-
+    const [pubs,setPubs] = useState([]);
+    const [trends,setTrends] = useState([]);
+    const [images,setImages] = useState([]);
+    const [index, setIndex] = React.useState(0)
     // Get Games
 
-    axios.get('/games').then((response)=>{
-        if(response.data.success){
-          // console.warn(response.data.user.avatar,'DATA');
-          AsyncStorage.setItem('user',JSON.stringify(response.data.user));
-          setUser(response.data.user);
-          AsyncStorage.setItem('profile',JSON.stringify(response.data.profile));
-          setUserProfile(response.data.profile);
-          AsyncStorage.setItem('account',JSON.stringify(response.data.account));
-          setAccount(response.data.account);
-        }
-      }).catch((error)=>{
-        console.warn("ERR",error);
-      })
+    const getHome = async () => {
+        
+        axios.get('/home').then((response)=>{
+            console.warn(response.data.pubs,'HOME');
+
+            // if(response.data.success){
+                setTrends(response.data.trends)
+                setPubs(response.data.pubs)
+                let imgs = [];
+                response.data.pubs.map(element => {
+                    console.warn("IMAGES",`${HOST+MEDIA+element.image}`);
+
+                    imgs.push(HOST+MEDIA+element.image)
+                });
+                setImages(imgs);
+            // }
+          }).catch((error)=>{
+            console.warn("ERR",error);
+          })
+    }
 
     useEffect(()=>{
+        console.warn("ALARM");
+        getHome();
+    },[]);
 
-    },[])
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <View>
-                    <Text>Home Content</Text>
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+        <Content>
+            <View style={{padding:0,marginLeft:-3,marginRight:-1,height:210}}>   
+                <ImageSlider 
+                    images={images}
+                    autoPlayWithInterval={3000}
+                    /> 
+            </View>
+
+        </Content>
     )
 }
 

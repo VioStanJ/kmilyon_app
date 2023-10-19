@@ -21,5 +21,9 @@ export const styles = StyleSheet.create({
     },
     avatar:{
         borderRadius:50,
+    },
+    contentPadding:{
+        paddingLeft:20,
+        paddingRight:20
     }
 });

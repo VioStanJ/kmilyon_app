@@ -7,7 +7,7 @@ import { styles } from '../styles'
 
 export const Header = (props) => {
     return (
-        <View style={{backgroundColor:'transparent',height:70,flexDirection:'row',justifyContent:'space-between',marginTop:30,paddingLeft:20,paddingRight:20,marginBottom:20}}>
+        <View style={{height:70,flexDirection:'row',justifyContent:'space-between',marginTop:30,paddingLeft:20,paddingRight:20}}>
             <View style={{}}>
                 <H2 style={{position:'relative',top:-2}}>{props.title??'Welcome'}</H2>
                 <Image source={actif} style={{height:20,width:20,position:'relative',top:-4}}/>

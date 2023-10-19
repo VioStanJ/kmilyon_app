@@ -61,15 +61,19 @@ export default Home = ({ navigation }) => {
 
   // Effect
   useEffect(() => {
+
     initUser();
+
     fetchProfile();
+
     Animated.spring(tabOffsetValue, {
       toValue: getWidth() * 2,
       useNativeDriver: true
     }).start();
-    setTimeout(()=>{
-      setOpacityHome(false)
+      setTimeout(()=>{
+        setOpacityHome(false)
     },10)
+    
   }, []);
 
     // Animated Tab Indicator...
@@ -77,7 +81,7 @@ export default Home = ({ navigation }) => {
     return (
       <>
         {/* Header */}
-        <Header title={title} style={{backgroundColor:'transparent',}} user={userProfile} />
+        <Header title={title} style={{backgroundColor:'red',}} user={userProfile} />
         {/* <Button >GET USER</Button> */}
         <Tab.Navigator
             initialRouteName={'HomeContent'}
