@@ -3,29 +3,24 @@ import { View,Text,Image,Dimensions } from 'react-native'
 import axios from './../axiosInterceptor';
 import Content from '../Components/Content';
 import { HOST, MEDIA, getWidth } from '../const';
-import CarouselCards from '../Components/CarouselCards';
 import ImageSlider from 'react-native-image-slider';
+import { H6 } from 'tamagui';
 
 const HomeContent = ({ navigation }) => {
 
-    const [pubs,setPubs] = useState([]);
     const [trends,setTrends] = useState([]);
     const [images,setImages] = useState([]);
-    const [index, setIndex] = React.useState(0)
     // Get Games
 
     const getHome = async () => {
         
         axios.get('/home').then((response)=>{
-            console.warn(response.data.pubs,'HOME');
+            // console.warn(response.data.pubs,'HOME');
 
             // if(response.data.success){
                 setTrends(response.data.trends)
-                setPubs(response.data.pubs)
                 let imgs = [];
                 response.data.pubs.map(element => {
-                    console.warn("IMAGES",`${HOST+MEDIA+element.image}`);
-
                     imgs.push(HOST+MEDIA+element.image)
                 });
                 setImages(imgs);
@@ -36,7 +31,6 @@ const HomeContent = ({ navigation }) => {
     }
 
     useEffect(()=>{
-        console.warn("ALARM");
         getHome();
     },[]);
 
@@ -47,6 +41,10 @@ const HomeContent = ({ navigation }) => {
                     images={images}
                     autoPlayWithInterval={3000}
                     /> 
+            </View>
+
+            <View style={{alignItems:'center',flexDirection:'column',marginTop:20}}>
+                <H6>Trends now</H6>
             </View>
 
         </Content>
