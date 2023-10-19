@@ -45,7 +45,7 @@ export default Home = ({ navigation }) => {
 
     axios.get('/profile').then((response)=>{
       if(response.data.success){
-        console.warn(response.data.user.avatar,'DATA');
+        // console.warn(response.data.user.avatar,'DATA');
         AsyncStorage.setItem('user',JSON.stringify(response.data.user));
         setUser(response.data.user);
         AsyncStorage.setItem('profile',JSON.stringify(response.data.profile));
@@ -63,6 +63,13 @@ export default Home = ({ navigation }) => {
   useEffect(() => {
     initUser();
     fetchProfile();
+    Animated.spring(tabOffsetValue, {
+      toValue: getWidth() * 2,
+      useNativeDriver: true
+    }).start();
+    setTimeout(()=>{
+      setOpacityHome(false)
+    },10)
   }, []);
 
     // Animated Tab Indicator...
@@ -73,11 +80,10 @@ export default Home = ({ navigation }) => {
         <Header title={title} style={{backgroundColor:'transparent',}} user={userProfile} />
         {/* <Button >GET USER</Button> */}
         <Tab.Navigator
-            
+            initialRouteName={'HomeContent'}
             screenOptions={{
                 headerShown:false,
                 tabBarShowLabel:false,
-
                 tabBarStyle: { 
                         backgroundColor: 'white',
                         position: 'absolute',
@@ -89,7 +95,7 @@ export default Home = ({ navigation }) => {
                         shadowOpacity: 0.06,
                         shadowOffset: {
                         width: 10,
-                        height: 10
+                        height: 10,
                     },
                     paddingHorizontal: 20,
                 },

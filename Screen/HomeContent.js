@@ -8,6 +8,19 @@ const HomeContent = ({ navigation }) => {
 
     // Get Games
 
+    axios.get('/games').then((response)=>{
+        if(response.data.success){
+          // console.warn(response.data.user.avatar,'DATA');
+          AsyncStorage.setItem('user',JSON.stringify(response.data.user));
+          setUser(response.data.user);
+          AsyncStorage.setItem('profile',JSON.stringify(response.data.profile));
+          setUserProfile(response.data.profile);
+          AsyncStorage.setItem('account',JSON.stringify(response.data.account));
+          setAccount(response.data.account);
+        }
+      }).catch((error)=>{
+        console.warn("ERR",error);
+      })
 
     useEffect(()=>{
 
