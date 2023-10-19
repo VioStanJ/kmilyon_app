@@ -5,6 +5,7 @@ import Content from '../Components/Content';
 import { HOST, MEDIA, getWidth } from '../const';
 import ImageSlider from 'react-native-image-slider';
 import { H6 } from 'tamagui';
+import GameCard from '../Components/GameCard';
 
 const HomeContent = ({ navigation }) => {
 
@@ -15,7 +16,6 @@ const HomeContent = ({ navigation }) => {
     const getHome = async () => {
         
         axios.get('/home').then((response)=>{
-            // console.warn(response.data.pubs,'HOME');
 
             // if(response.data.success){
                 setTrends(response.data.trends)
@@ -43,8 +43,15 @@ const HomeContent = ({ navigation }) => {
                     /> 
             </View>
 
-            <View style={{alignItems:'center',flexDirection:'column',marginTop:20}}>
-                <H6>Trends now</H6>
+            <View style={{padding:20,flexDirection:'column',marginBottom:100}}>
+                <H6 style={{alignSelf:'center'}}>Trends now</H6>
+
+                {
+                    trends.map((item,index)=>{
+                        return <GameCard game={item} is_new={true}/>;
+                    })
+                }
+
             </View>
 
         </Content>

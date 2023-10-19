@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native'
 export const PRIMARY_LIGHT = '#b341ff';
 export const PRIMARY = "#9737d7";
 export const PRIMARY_DARK = "#2b0d40";
+export const SECONDARY = "#3700AD";
 
 export const styles = StyleSheet.create({
     text : {
