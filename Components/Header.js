@@ -10,13 +10,13 @@ export const Header = (props) => {
         <View style={{height:70,flexDirection:'row',justifyContent:'space-between',marginTop:30,paddingLeft:20,paddingRight:20}}>
             <View style={{}}>
                 <H2 style={{position:'relative',top:-2}}>{props.title??'Welcome'}</H2>
-                <Image source={actif} style={{height:20,width:20,position:'relative',top:-4}}/>
+                {/* <Image source={actif} style={{height:20,width:20,position:'relative',top:-4}}/> */}
             </View>
             <View style={{flexDirection:'row',flexBasis:'49%',justifyContent:'flex-end'}}>
                 {
                     props.user?
                     <View style={{alignItems:'flex-end',}}>
-                        <H5 style={{position:'relative',top:2,textTransform:'inherit'}}>Ey, {props.user.firstname} {props.user.lastname} !</H5>
+                        <H5 style={{position:'relative',top:2,textTransform:'inherit',textAlign:'right'}}>Ey, {props.user.firstname} {props.user.lastname} !</H5>
                         {/* <H6 style={{fontWeight:'bold',position:'relative',top:-4}}># {props.user.code}</H6> */}
                     </View>
                     :null

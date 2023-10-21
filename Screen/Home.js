@@ -38,6 +38,10 @@ export default Home = ({ navigation }) => {
       AsyncStorage.getItem('profile').then((profile)=>{
         setUserProfile(JSON.parse(profile));
       });
+      AsyncStorage.getItem('account').then((account)=>{
+        console.warn("ALERT");
+        setAccount(JSON.parse(account));
+      });
   }
 
   // Fucntions Get Data From Server
@@ -180,6 +184,7 @@ export default Home = ({ navigation }) => {
             tabPress: e => {
                 setOpacityHome(true)
                 setTitle('Welcome')
+                initUser()
 
               Animated.spring(tabOffsetValue, {
                 toValue: getWidth() * 2,

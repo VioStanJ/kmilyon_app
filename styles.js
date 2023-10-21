@@ -12,6 +12,11 @@ export const styles = StyleSheet.create({
         fontWeight:400,
         fontSize:14
     },
+    textmuted : {
+        color : 'grey',
+        fontWeight:400,
+        fontSize:14
+    },
     link : {
         color:PRIMARY,
         fontWeight:'bold'
@@ -26,5 +31,19 @@ export const styles = StyleSheet.create({
     contentPadding:{
         paddingLeft:20,
         paddingRight:20
-    }
+    },
+    card :{
+        backgroundColor:'white',borderRadius:6,padding:20,marginTop:20,elevation:1
+    },
+    cellpin : {
+        width:50,
+        borderWidth: 2,
+        borderRadius: 6,
+        borderColor: PRIMARY_DARK,
+        backgroundColor: 'white',
+    },
+    focusedpin:{
+        borderColor: PRIMARY,
+        backgroundColor: '#dba7fd',
+      }
 });

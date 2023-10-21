@@ -8,8 +8,8 @@ import { HOST, MEDIA } from '../const';
 const GameCard = ({ game,is_new }) => {
     return (
         <View style={{backgroundColor:'white',marginTop:50,borderRadius:8,elevation:2,padding:20,marginBottom:10}}>
-            <View style={{alignSelf:'center',backgroundColor:'white',elevation:6,width:80,height:80,padding:5,borderRadius:6,position:'relative',top:-50}}>
-                <Image source={{uri:HOST+MEDIA+game.image}} style={{width:'100%',height:"100%",elevation:6}}/>
+            <View style={{alignSelf:'center',backgroundColor:'white',elevation:6,width:90,height:80,padding:5,borderRadius:6,position:'relative',top:-50}}>
+                <Image source={{uri:HOST+MEDIA+game.image}} style={{width:'100%',height:"100%"}}/>
             </View>
             <View style={{flex:1,marginTop:-70,flexDirection:'row',width:'100%',justifyContent:'space-between'}}>
                 {
