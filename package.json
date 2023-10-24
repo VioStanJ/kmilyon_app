@@ -20,6 +20,8 @@
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/native-stack": "^6.9.14",
     "@tamagui/config": "^1.74.13",
+    "@tamagui/dialog": "^1.75.1",
+    "@tamagui/sheet": "^1.75.1",
     "add": "^2.0.6",
     "axios": "^1.5.1",
     "native-base": "^3.4.28",

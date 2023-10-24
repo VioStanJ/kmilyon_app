@@ -6,6 +6,7 @@ export const PRIMARY = "#9737d7";
 export const PRIMARY_DARK = "#2b0d40";
 export const SECONDARY = "#3700AD";
 export const BACKGROUND = '#E9DEFF';
+export const YELLOW_COIN = '#BEC11E';
 
 export const styles = StyleSheet.create({
     text : {
