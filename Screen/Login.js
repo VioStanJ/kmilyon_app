@@ -11,17 +11,20 @@ import { ScrollView } from 'tamagui'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {PRIMARY_DARK, styles} from './../styles'
 import bout from './../assets/img/bout.png';
+import Loading from '../Components/Loading'
 
 const Login = ({ navigation }) => {
 
     const [email,setEmail] = useState('viostanojguerrier@gmail.com')
     const [password,setPassword] = useState('P@ss0011')
+
+    const [open,openModal] = useState(false)
     
 
     function signIn() {
 
         console.warn("URL",URL+'/token/');
-
+        openModal(true)
         axios.post(URL+'/token/',{email,password})
             .then((response)=>{
                 if(response.status === 200){
@@ -33,13 +36,14 @@ const Login = ({ navigation }) => {
                             navigation.navigate('home');
                         },100);
                     } catch (error) {
-                        
+                        openModal(false)
                     }
                 }else{
-
+                    openModal(false)
                 }
                 // console.warn(response);
             }).catch((error)=>{
+                openModal(false)
                 console.warn("error",error);
             })
     }
@@ -91,6 +95,8 @@ const Login = ({ navigation }) => {
                         <Text style={styles.link}> Sign Up</Text>
                     </TouchableOpacity>
                 </View>
+
+                <Loading open={open} close={()=>openModal(false)} />
             </ScrollView>
         </Container>
     )

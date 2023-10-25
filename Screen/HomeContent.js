@@ -12,6 +12,7 @@ import {styles} from './../styles'
 
 const HomeContent = ({ navigation }) => {
 
+    const [loaded,setLoad] = useState(false);
     const [trends,setTrends] = useState([]);
     const [images,setImages] = useState([]);
     const [account,setAccount] = useState({user: 0,point: 0,point_bonus: 0,active: false,status: true})
@@ -59,44 +60,47 @@ const HomeContent = ({ navigation }) => {
     useEffect(()=>{
         init();
         getHome();
+        setLoad(true)
     },[]);
 
     return (
+        loaded?
         <Content>
-            <View style={{padding:0,marginLeft:-3,marginRight:-1,height:210}}>   
-                <ImageSlider 
-                    images={images}
-                    autoPlayWithInterval={3000}
-                    /> 
-            </View>
+        <View style={{padding:0,marginLeft:-3,marginRight:-1,height:210}}>   
+            <ImageSlider 
+                images={images}
+                autoPlayWithInterval={3000}
+                /> 
+        </View>
 
-            <View style={{padding:20,flexDirection:'column',marginBottom:100}}>
-                <H6 style={{alignSelf:'center'}}>Trends now</H6>
+        <View style={{padding:20,flexDirection:'column',marginBottom:100}}>
+            <H6 style={{alignSelf:'center'}}>Trends now</H6>
 
-                {
-                    trends?
-                        trends.map((item,index)=>{
-                            return <GameCard game={item} is_new={true} key={index} />;
-                        })
-                    :null
-                }
+            {
+                trends?
+                    trends.map((item,index)=>{
+                        return <GameCard game={item} is_new={true} key={index} />;
+                    })
+                :null
+            }
 
-                {
-                    !account.active?
-                        <TouchableOpacity onPress={()=>navigation.navigate('Wallet')}>
-                            <View style={[styles.card,{flexDirection:'row'}]}>
-                                <Image source={secure} style={{width:40,height:40}}/>
-                                <View style={{marginLeft:10}}>
-                                    <H5 style={{fontWeight:'bold'}}>PIN REQUIRED</H5>
-                                    <Text>Please set up a PIN for your Account !</Text>
-                                </View>
+            {
+                account && !account.active?
+                    <TouchableOpacity onPress={()=>navigation.navigate('Wallet')}>
+                        <View style={[styles.card,{flexDirection:'row'}]}>
+                            <Image source={secure} style={{width:40,height:40}}/>
+                            <View style={{marginLeft:10}}>
+                                <H5 style={{fontWeight:'bold'}}>PIN REQUIRED</H5>
+                                <Text>Please set up a PIN for your Account !</Text>
                             </View>
-                        </TouchableOpacity>
-                    :null
-                }
-            </View>
+                        </View>
+                    </TouchableOpacity>
+                :null
+            }
+        </View>
 
-        </Content>
+    </Content>
+        :null
     )
 }
 

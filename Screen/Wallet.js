@@ -14,6 +14,8 @@ import paypal from './../assets/img/paypal.png';
 import PayCard from '../Components/PayCard';
 
 const Wallet = ({ navigation }) => {
+    
+    const [loaded,setLoad] = useState(false);
     const [account,setAccount] = useState({user: 25,point: 0,point_bonus: 0,active: false,status: true})
     const [profile,setProfile] = useState({})
     const [openCard,setOpenCard] = useState(false)
@@ -46,6 +48,7 @@ const Wallet = ({ navigation }) => {
     // Effect
   useEffect(() => {
     AsyncStorage.getItem('account').then((acc)=>{
+        console.warn("ACCOUNT",JSON.parse(acc));
         setAccount(JSON.parse(acc))
     });
     AsyncStorage.getItem('profile').then((pro)=>{
@@ -53,16 +56,10 @@ const Wallet = ({ navigation }) => {
     });
   },[])
 
-  const Item = ({title}) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-
     return (
         <Content>
             {
-                account.active?
+                account && account.active?
                     <View style={{padding:20}}>
 
                         {/* Wallet */}

@@ -11,6 +11,7 @@ import { ScrollView } from 'tamagui'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {PRIMARY_DARK, styles} from './../styles'
 import bout from './../assets/img/bout.png';
+import Loading from '../Components/Loading'
 
 const Login = ({ navigation }) => {
 
@@ -18,8 +19,11 @@ const Login = ({ navigation }) => {
     const [password,setPassword] = useState('');
     const [password_confirmation,setPasswordConfirmation] = useState('');
     const [birthday,setBirthday] = useState('');
+    
+    const [open,openModal] = useState(false)
 
     function signUp() {
+        openModal(true)
 
         console.warn("URL",URL+'/token/');
 
@@ -34,8 +38,10 @@ const Login = ({ navigation }) => {
                 }else{
 
                 }
+                openModal(false)
                 // console.warn(response);
             }).catch((error)=>{
+                openModal(false)
                 console.warn("error",error);
             })
     }
@@ -97,6 +103,8 @@ const Login = ({ navigation }) => {
                 <Spacer/>
                 <Spacer/>
                 <Spacer/>
+
+                <Loading open={open} close={()=>openModal(false)} />
 
             </ScrollView>
         </Container>
