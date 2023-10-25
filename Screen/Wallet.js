@@ -83,12 +83,7 @@ const Wallet = ({ navigation }) => {
 
                         {/* Wallet */}
                         <ImageBackground  source={wallet} resizeMode='cover'
-                            style={{flexDirection: 'column',height:190,padding:20,elevation:6,
-                            borderBottomLeftRadius: 10,
-                            borderBottomRightRadius: 10,
-                            borderTopRightRadius: 15,
-                            borderTopLeftRadius: 10,
-                            overflow: 'hidden',}}>
+                            style={styles.walletBackground}>
                             <Text style={{color:'gray',textAlign:'right',fontWeight:'bold',fontSize:16}}>{profile?"# "+profile.code:"--"}</Text>
 
                             <Text style={{color:'white',fontWeight:'200'}}>Your Balance is</Text>

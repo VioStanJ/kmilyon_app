@@ -47,5 +47,10 @@ export const styles = StyleSheet.create({
     focusedpin:{
         borderColor: PRIMARY,
         backgroundColor: '#dba7fd',
-      }
+    },
+    walletBackground : {
+        flexDirection: 'column',height:190,padding:20,elevation:6,
+        borderBottomLeftRadius: 10,borderBottomRightRadius: 10,
+        borderTopRightRadius: 15,borderTopLeftRadius: 10,overflow: 'hidden'
+    }
 });
