@@ -74,9 +74,11 @@ const HomeContent = ({ navigation }) => {
                 <H6 style={{alignSelf:'center'}}>Trends now</H6>
 
                 {
-                    trends.map((item,index)=>{
-                        return <GameCard game={item} is_new={true} key={index} />;
-                    })
+                    trends?
+                        trends.map((item,index)=>{
+                            return <GameCard game={item} is_new={true} key={index} />;
+                        })
+                    :null
                 }
 
                 {
