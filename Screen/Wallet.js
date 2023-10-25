@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { SafeAreaView,ScrollView,View,Text,ImageBackground,FlatList } from 'react-native'
+import { SafeAreaView,ScrollView,View,Text,ImageBackground,FlatList, ActivityIndicator } from 'react-native'
 import Container from '../Components/Container';
 import Content from '../Components/Content';
 import SetupPin from '../Components/SetupPin';
@@ -44,7 +44,7 @@ const Wallet = ({ navigation }) => {
     }
 
     function payWithCard(payment){
-        console.warn("PAYMENT",payment);
+
         setOpenCard(false)
         openModal(true)
         axios.post('/add/card/payment/',payment).then((response)=>{
@@ -69,9 +69,13 @@ const Wallet = ({ navigation }) => {
     AsyncStorage.getItem('profile').then((pro)=>{
         setProfile(JSON.parse(pro))
     });
+    setTimeout(()=>{
+        setLoad(true)
+    },1000)
   },[])
 
     return (
+        loaded?
         <Content>
             {
                 account && account.active?
@@ -79,7 +83,12 @@ const Wallet = ({ navigation }) => {
 
                         {/* Wallet */}
                         <ImageBackground  source={wallet} resizeMode='cover'
-                            style={{flexDirection: 'column',height:200,padding:20,elevation:6}}>
+                            style={{flexDirection: 'column',height:190,padding:20,elevation:6,
+                            borderBottomLeftRadius: 10,
+                            borderBottomRightRadius: 10,
+                            borderTopRightRadius: 15,
+                            borderTopLeftRadius: 10,
+                            overflow: 'hidden',}}>
                             <Text style={{color:'gray',textAlign:'right',fontWeight:'bold',fontSize:16}}>{profile?"# "+profile.code:"--"}</Text>
 
                             <Text style={{color:'white',fontWeight:'200'}}>Your Balance is</Text>
@@ -129,6 +138,9 @@ const Wallet = ({ navigation }) => {
             <Loading open={open} close={()=>openModal(false)} />
 
         </Content>
+        :
+        <ActivityIndicator size="small" color="#0000ff" />
+
     )
 }
 
