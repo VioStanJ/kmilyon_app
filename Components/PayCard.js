@@ -23,17 +23,17 @@ export default PayCard = ({close,send}) => {
             <Input  value={card_name} onChangeText={(e)=>setCardName(e)} style={[styles.input,{marginBottom:10}]}/>
 
             <Label style={styles.text}>Card Number</Label>
-            <Input  keyboardType='numeric' value={card_number} onChangeText={(e)=>setCardNumber(e)} style={[styles.input,{marginBottom:10}]}/>
+            <Input  keyboardType='numeric' value={card_number.toString()} onChangeText={(e)=>setCardNumber(e)} style={[styles.input,{marginBottom:10}]}/>
 
             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <View style={{flexBasis:'48%'}}>
                     <Label style={styles.text}>CVV</Label>
-                    <Input secureTextEntry keyboardType='numeric' value={cvv} onChangeText={(e)=>setCVV(e)} style={styles.input}/>
+                    <Input secureTextEntry keyboardType='numeric' value={cvv.toString()} onChangeText={(e)=>setCVV(e)} style={styles.input}/>
                 </View>
 
                 <View style={{flexBasis:'48%'}}>
                     <Label style={styles.text}>Expiration Date</Label>
-                    <Input value={exp_date} onChangeText={(e)=>setDate(e)} style={styles.input}/>
+                    <Input value={exp_date.toString()} onChangeText={(e)=>setDate(e)} style={styles.input}/>
                 </View>
             </View>
 
@@ -49,7 +49,7 @@ export default PayCard = ({close,send}) => {
                 </View>
                 <View style={{flexBasis:'50%'}}>
                     <Label style={styles.text}>Amount</Label>
-                    <Input keyboardType='numeric' value={amount} onChangeText={(e)=>setAmount(e)} style={styles.input}/>
+                    <Input keyboardType='numeric' value={amount.toString()} onChangeText={(e)=>setAmount(e)} style={styles.input}/>
                 </View>
             </View>
 

@@ -28,7 +28,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response) => {
     // Do something with the response data
-    console.warn('Do something with the response data');
+    // console.warn('Do something with the response data');
     return response;
   },
   (error) => {

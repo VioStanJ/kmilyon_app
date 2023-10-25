@@ -12,6 +12,8 @@ import TopUp from '../Components/TopUp';
 import card from './../assets/img/card.png';
 import paypal from './../assets/img/paypal.png';
 import PayCard from '../Components/PayCard';
+import Loading from '../Components/Loading';
+import axios from 'axios'
 
 const Wallet = ({ navigation }) => {
     
@@ -21,7 +23,7 @@ const Wallet = ({ navigation }) => {
     const [openCard,setOpenCard] = useState(false)
 
     const topups = [{title:'Card',image:card},{title:'PayPal',image:paypal}];
-
+    const [open,openModal] = useState(false)
    
     const setActiveAccount = (account) => {
         AsyncStorage.setItem('account',JSON.stringify(account))
@@ -29,7 +31,7 @@ const Wallet = ({ navigation }) => {
         console.warn("ACCOUNT",account);
     }
 
-    function open(name){
+    function openPayment(name){
         switch (name) {
             case 'Card':
                 setOpenCard(true)
@@ -44,6 +46,19 @@ const Wallet = ({ navigation }) => {
     function payWithCard(payment){
         console.warn("PAYMENT",payment);
         setOpenCard(false)
+        openModal(true)
+        axios.post('/add/card/payment/',payment).then((response)=>{
+            console.warn(response.data);
+            if(response.data.success){
+                setAccount(response.data.account);
+            }
+            console.warn(response.data.message);
+            openModal(false)
+        }).catch((error)=>{
+            console.warn(error);
+            openModal(false)
+
+        })
     }
     // Effect
   useEffect(() => {
@@ -90,7 +105,7 @@ const Wallet = ({ navigation }) => {
                         <FlatList
                             horizontal={true}
                             data={topups}
-                            renderItem={({item}) => <TopUp title={item.title} image={item.image} onPress={()=>open(item.title)}/>}
+                            renderItem={({item}) => <TopUp title={item.title} image={item.image} onPress={()=>openPayment(item.title)}/>}
                             keyExtractor={item => item.title}
                             showsHorizontalScrollIndicator={false}
                             style={{marginTop:10,marginBottom:60}}
@@ -110,6 +125,9 @@ const Wallet = ({ navigation }) => {
                 :
                 <SetupPin setAccount={setActiveAccount} />
             }
+            
+            <Loading open={open} close={()=>openModal(false)} />
+
         </Content>
     )
 }
