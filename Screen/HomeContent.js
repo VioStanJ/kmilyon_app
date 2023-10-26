@@ -30,7 +30,6 @@ const HomeContent = ({ navigation }) => {
             })
 
             AsyncStorage.getItem('account').then((saccount)=>{
-                console.warn("SACC",JSON.parse(saccount));
                 setAccount(JSON.parse(saccount))
             })
         } catch (error) {

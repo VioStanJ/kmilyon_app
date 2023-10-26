@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { SafeAreaView,ScrollView,View,Text,ImageBackground,FlatList, ActivityIndicator } from 'react-native'
-import Container from '../Components/Container';
+import { View,Text,ImageBackground,FlatList, ActivityIndicator ,ToastAndroid} from 'react-native'
 import Content from '../Components/Content';
 import SetupPin from '../Components/SetupPin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -22,13 +21,12 @@ const Wallet = ({ navigation }) => {
     const [profile,setProfile] = useState({})
     const [openCard,setOpenCard] = useState(false)
 
-    const topups = [{title:'Card',image:card},{title:'PayPal',image:paypal}];
-    const [open,openModal] = useState(false)
+    const topups = [{id:1,title:'Card',image:card},{id:2,title:'PayPal',image:paypal}];
+    const [open,openModal] = useState(false) 
    
     const setActiveAccount = (account) => {
         AsyncStorage.setItem('account',JSON.stringify(account))
         setAccount(account)
-        console.warn("ACCOUNT",account);
     }
 
     function openPayment(name){
@@ -51,19 +49,24 @@ const Wallet = ({ navigation }) => {
             console.warn(response.data);
             if(response.data.success){
                 setAccount(response.data.account);
+                ToastAndroid.show(response.data.message, ToastAndroid.SHORT);
+                // Toast.success(response.data.message)
+            }else{
+                ToastAndroid.show(response.data.message, ToastAndroid.SHORT);
             }
-            console.warn(response.data.message);
             openModal(false)
         }).catch((error)=>{
             console.warn(error);
             openModal(false)
-
+            ToastAndroid.show("Fail ! Please try again !", ToastAndroid.SHORT);
         })
     }
     // Effect
   useEffect(() => {
+    // Toast.info('Info')
+    ToastAndroid.show("Test", ToastAndroid.SHORT);
+
     AsyncStorage.getItem('account').then((acc)=>{
-        console.warn("ACCOUNT",JSON.parse(acc));
         setAccount(JSON.parse(acc))
     });
     AsyncStorage.getItem('profile').then((pro)=>{
@@ -71,13 +74,13 @@ const Wallet = ({ navigation }) => {
     });
     setTimeout(()=>{
         setLoad(true)
-    },1000)
+    },600)
   },[])
 
     return (
         loaded?
         <Content>
-            {
+                {
                 account && account.active?
                     <View style={{padding:20}}>
 
@@ -110,7 +113,7 @@ const Wallet = ({ navigation }) => {
                             horizontal={true}
                             data={topups}
                             renderItem={({item}) => <TopUp title={item.title} image={item.image} onPress={()=>openPayment(item.title)}/>}
-                            keyExtractor={item => item.title}
+                            keyExtractor={item => item.id}
                             showsHorizontalScrollIndicator={false}
                             style={{marginTop:10,marginBottom:60}}
                         />
@@ -130,7 +133,7 @@ const Wallet = ({ navigation }) => {
                 <SetupPin setAccount={setActiveAccount} />
             }
             
-            <Loading open={open} close={()=>openModal(false)} />
+            <Loading open={open} info={"Processing ..."} close={()=>openModal(false)} />
 
         </Content>
         :

@@ -1,6 +1,5 @@
 import React from 'react'
-import { SafeAreaView,ScrollView,View,Text } from 'react-native'
-import Container from '../Components/Container';
+import { View,Text } from 'react-native'
 import Content from '../Components/Content';
 
 const Ticket = ({ navigation }) => {

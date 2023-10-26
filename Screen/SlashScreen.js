@@ -13,7 +13,6 @@ const SplashScreen = ({ navigation }) => {
         .then((connect) => {
           try {
             // Parse the value as JSON
-
             const isConnected = JSON.parse(connect);
 
             if (isConnected) {

@@ -2,7 +2,7 @@ import React from 'react'
 import { View,ActivityIndicator } from 'react-native'
 import { Button, Dialog, H5 } from 'tamagui'
 
-export default Loading = ({open,close,info}) => {
+export default Loading = ({open,close,info,button}) => {
     return (
         <Dialog open={open}
             style={{width:200}}>
@@ -15,8 +15,12 @@ export default Loading = ({open,close,info}) => {
                         info?
                             <>
                                 <H5>{info}</H5>
-                                <Button size="$3" theme="active" color={'white'} backgroundColor={"$gray10"}
-                                onPress={close}>Close</Button>
+                                {
+                                    button?
+                                    <Button size="$3" theme="active" color={'white'} backgroundColor={"$gray10"}
+                                    onPress={close}>Close</Button>
+                                    :null
+                                }
                             </>
                         :
                         <ActivityIndicator size="small" color="#0000ff" />

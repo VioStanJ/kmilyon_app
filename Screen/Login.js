@@ -15,15 +15,14 @@ import Loading from '../Components/Loading'
 
 const Login = ({ navigation }) => {
 
-    const [email,setEmail] = useState('viostanojguerrier@gmail.com')
-    const [password,setPassword] = useState('P@ss0011')
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
 
     const [open,openModal] = useState(false)
     
 
     function signIn() {
 
-        console.warn("URL",URL+'/token/');
         openModal(true)
         axios.post(URL+'/token/',{email,password})
             .then((response)=>{
@@ -32,6 +31,7 @@ const Login = ({ navigation }) => {
                         AsyncStorage.setItem('access_token',JSON.stringify(response.data.access));
                         AsyncStorage.setItem('refresh_token',JSON.stringify(response.data.refresh));
                         AsyncStorage.setItem('is_connect',"true");
+                        openModal(false)
                         setTimeout(()=>{
                             navigation.navigate('home');
                         },100);
@@ -64,13 +64,14 @@ const Login = ({ navigation }) => {
 
                 <View style={{flex:4,paddingLeft:20,paddingRight:20,height:'100%',flex:1,flexGrow:1,justifyContent:'center'}}>
                     <Label htmlFor="name" style={styles.text}>Email</Label>
-                    <Input  value={email} onChangeText={(e)=>setEmail(e)} style={styles.input}/>
+                    <Input  value={email} onChangeText={(e)=>setEmail(e)} style={styles.input}
+                        placeholder='example@email.com'/>
 
                     <Spacer/>
 
                     <Label htmlFor="name" style={styles.text}>Password</Label>
                     <Input  secureTextEntry value={password} onChangeText={(e)=>setPassword(e)}
-                        style={styles.input}/>
+                        style={styles.input} placeholder='********'/>
 
                     <Spacer/>
 

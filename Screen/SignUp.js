@@ -25,8 +25,6 @@ const Login = ({ navigation }) => {
     function signUp() {
         openModal(true)
 
-        console.warn("URL",URL+'/token/');
-
         axios.post(URL+'/signup/',{email,password,password_confirmation,birthday})
             .then((response)=>{
                 if(response.status === 200){
@@ -39,7 +37,6 @@ const Login = ({ navigation }) => {
 
                 }
                 openModal(false)
-                // console.warn(response);
             }).catch((error)=>{
                 openModal(false)
                 console.warn("error",error);
@@ -62,25 +59,26 @@ const Login = ({ navigation }) => {
 
                 <View style={{flex:4,paddingLeft:20,paddingRight:20,height:'100%',flex:1,flexGrow:1,justifyContent:'center'}}>
                     <Label htmlFor="name" style={styles.text}>Email</Label>
-                    <Input  value={email} onChangeText={(e)=>setEmail(e)} style={styles.input}/>
+                    <Input  value={email} onChangeText={(e)=>setEmail(e)} style={styles.input}
+                         placeholder='example@email.com'/>
 
                     <Spacer/>
 
                     <Label htmlFor="name" style={styles.text}>Password</Label>
                     <Input  secureTextEntry value={password} onChangeText={(e)=>setPassword(e)}
-                        style={styles.input}/>
+                        style={styles.input} placeholder='********'/>
 
                     <Spacer/>
 
                     <Label htmlFor="name" style={styles.text}>Password Confirmation</Label>
                     <Input  secureTextEntry value={password_confirmation} onChangeText={(e)=>setPasswordConfirmation(e)}
-                        style={styles.input}/>
+                        style={styles.input} placeholder='********'/>
 
                     <Spacer/>
 
                     <Label htmlFor="name" style={styles.text}>Birthday</Label>
                     <Input  value={birthday} onChangeText={(e)=>setBirthday(e)}
-                        style={styles.input}/>
+                        style={styles.input} placeholder='YYYY-MM-DD'/>
 
                     <Spacer/>
 

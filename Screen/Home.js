@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Animated, Dimensions, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Dimensions, Image, Platform, View } from 'react-native';
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // Plus...
 import home from './../assets/img/home.png'
@@ -14,13 +13,11 @@ import { useEffect, useRef, useState } from 'react';
 import { PRIMARY } from '../styles';
 import HomeContent from './HomeContent';
 import { Header } from '../Components/Header';
-import { getHeaderTitle } from '@react-navigation/elements';
 import Ticket from './Ticket';
 import Game from './Game';
 import Wallet from './Wallet';
 import Profile from './Profile';
 import axios from './../axiosInterceptor';
-import { Button } from 'tamagui';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,7 +36,6 @@ export default Home = ({ navigation }) => {
         setUserProfile(JSON.parse(profile));
       });
       AsyncStorage.getItem('account').then((account)=>{
-        console.warn("ALERT");
         setAccount(JSON.parse(account));
       });
   }
@@ -49,7 +45,6 @@ export default Home = ({ navigation }) => {
 
     axios.get('/profile').then((response)=>{
       if(response.data.success){
-        // console.warn(response.data.user.avatar,'DATA');
         AsyncStorage.setItem('user',JSON.stringify(response.data.user));
         setUser(response.data.user);
         AsyncStorage.setItem('profile',JSON.stringify(response.data.profile));
