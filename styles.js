@@ -1,4 +1,3 @@
-import { Construction } from '@tamagui/lucide-icons';
 import { StyleSheet } from 'react-native'
 
 export const PRIMARY_LIGHT = '#b341ff';

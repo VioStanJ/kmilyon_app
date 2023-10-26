@@ -1,15 +1,28 @@
-import React from 'react'
-import { View,Text } from 'react-native'
-import Content from '../Components/Content';
+import React, { useEffect, useState } from 'react'
+import { ActivityIndicator, View } from 'react-native'
+import {H5, Image, Spacer } from 'tamagui';
+import nodata from './../assets/img/nodata.png'
 
-const Ticket = ({ navigation }) => {
+export default Ticket = ({props}) => {
+    const [loaded,setLoad] = useState(false);
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            setLoad(true)
+        },600)
+    },[])
+
     return (
-        <Content>
-            <View>
-                <Text>Ticket</Text>
+        loaded?
+        <View style={{justifyContent:'center',alignItems:'center',height:'100%'}}>
+            <View style={{alignItems:'center'}}>
+                <Image source={nodata} style={{width:200,height:100,marginTop:-80}}/>
+                <Spacer/>
+                <H5>No Ticket Yet !</H5>
             </View>
-        </Content>
+        </View>
+        :
+        <ActivityIndicator size="small" color="#0000ff" />
+
     )
 }
-
-export default Ticket;
