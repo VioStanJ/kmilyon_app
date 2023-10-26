@@ -12,7 +12,7 @@ import card from './../assets/img/card.png';
 import paypal from './../assets/img/paypal.png';
 import PayCard from '../Components/PayCard';
 import Loading from '../Components/Loading';
-import axios from 'axios'
+import axios from './../axiosInterceptor';
 
 const Wallet = ({ navigation }) => {
     
@@ -50,7 +50,6 @@ const Wallet = ({ navigation }) => {
             if(response.data.success){
                 setAccount(response.data.account);
                 ToastAndroid.show(response.data.message, ToastAndroid.SHORT);
-                // Toast.success(response.data.message)
             }else{
                 ToastAndroid.show(response.data.message, ToastAndroid.SHORT);
             }
@@ -63,8 +62,6 @@ const Wallet = ({ navigation }) => {
     }
     // Effect
   useEffect(() => {
-    // Toast.info('Info')
-    ToastAndroid.show("Test", ToastAndroid.SHORT);
 
     AsyncStorage.getItem('account').then((acc)=>{
         setAccount(JSON.parse(acc))

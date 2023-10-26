@@ -27,15 +27,14 @@ const Login = ({ navigation }) => {
 
         axios.post(URL+'/signup/',{email,password,password_confirmation,birthday})
             .then((response)=>{
-                if(response.status === 200){
-                    try {
-                        navigation.navigate('login');
-                    } catch (error) {
-                        
-                    }
-                }else{
-
+                if(response.data.success === 200){
+                    navigation.navigate('login');
                 }
+
+                try {
+                    ToastAndroid.show(response.data.message,ToastAndroid.SHORT)
+                } catch (error) {}
+                
                 openModal(false)
             }).catch((error)=>{
                 openModal(false)

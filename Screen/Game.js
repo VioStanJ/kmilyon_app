@@ -7,7 +7,8 @@ const Game = ({ navigation }) => {
     return (
         <Content>
             <View>
-                <Text>Game</Text>
+                {/* <Text>Game</Text> */}
+                
             </View>
         </Content>
     )

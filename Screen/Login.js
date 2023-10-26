@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { View,TouchableOpacity,StyleSheet, ImageBackground } from 'react-native'
+import { View,TouchableOpacity,StyleSheet, ImageBackground,ToastAndroid } from 'react-native'
 import { Button, Text, YStack } from 'tamagui'
 import { Input, Spacer, VisuallyHidden } from 'tamagui'
 import { Label } from 'tamagui'
@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import {PRIMARY_DARK, styles} from './../styles'
 import bout from './../assets/img/bout.png';
 import Loading from '../Components/Loading'
+import RNRestart from 'react-native-restart';
 
 const Login = ({ navigation }) => {
 
@@ -31,17 +32,20 @@ const Login = ({ navigation }) => {
                         AsyncStorage.setItem('access_token',JSON.stringify(response.data.access));
                         AsyncStorage.setItem('refresh_token',JSON.stringify(response.data.refresh));
                         AsyncStorage.setItem('is_connect',"true");
-                        openModal(false)
                         setTimeout(()=>{
-                            navigation.navigate('home');
-                        },100);
+                            openModal(false)
+                            RNRestart.restart();
+                        },1000);
                     } catch (error) {
                         openModal(false)
                     }
                 }else{
                     openModal(false)
                 }
-                // console.warn(response);
+                
+                try {
+                    ToastAndroid.show(response.data.message,ToastAndroid.SHORT)
+                } catch (error) {}
             }).catch((error)=>{
                 openModal(false)
                 console.warn("error",error);

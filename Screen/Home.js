@@ -33,10 +33,14 @@ export default Home = ({ navigation }) => {
 
   const initUser = async () => {
       AsyncStorage.getItem('profile').then((profile)=>{
-        setUserProfile(JSON.parse(profile));
+        if(profile != null){
+          setUserProfile(JSON.parse(profile));
+        }
       });
       AsyncStorage.getItem('account').then((account)=>{
-        setAccount(JSON.parse(account));
+        if(profile != null){
+          setAccount(JSON.parse(account));
+        }
       });
   }
 
@@ -51,6 +55,9 @@ export default Home = ({ navigation }) => {
         setUserProfile(response.data.profile);
         AsyncStorage.setItem('account',JSON.stringify(response.data.account));
         setAccount(response.data.account);
+
+        console.warn("LOADED USER DATA");
+
       }
     }).catch((error)=>{
       console.warn("ERR",error);
@@ -61,7 +68,7 @@ export default Home = ({ navigation }) => {
   // Effect
   useEffect(() => {
 
-    initUser();
+    // initUser();
 
     fetchProfile();
 
@@ -72,7 +79,6 @@ export default Home = ({ navigation }) => {
       setTimeout(()=>{
         setOpacityHome(false)
     },10)
-    
   }, []);
 
     // Animated Tab Indicator...
