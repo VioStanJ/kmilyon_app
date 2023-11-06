@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { View,TouchableOpacity,StyleSheet, ImageBackground } from 'react-native'
+import { View,TouchableOpacity,StyleSheet, ImageBackground,ToastAndroid } from 'react-native'
 import { Button, Text, YStack } from 'tamagui'
 import { Input, Spacer, VisuallyHidden } from 'tamagui'
 import { Label } from 'tamagui'
@@ -15,6 +15,8 @@ import Loading from '../Components/Loading'
 
 const Login = ({ navigation }) => {
 
+    const [firstname,setFirstname] = useState('');
+    const [lastname,setLastname] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [password_confirmation,setPasswordConfirmation] = useState('');
@@ -25,9 +27,9 @@ const Login = ({ navigation }) => {
     function signUp() {
         openModal(true)
 
-        axios.post(URL+'/signup/',{email,password,password_confirmation,birthday})
+        axios.post(URL+'/signup/',{firstname,lastname,email,password,password_confirmation,birthday})
             .then((response)=>{
-                if(response.data.success === 200){
+                if(response.data.success){
                     navigation.navigate('login');
                 }
 
@@ -57,6 +59,26 @@ const Login = ({ navigation }) => {
                 </ImageBackground>
 
                 <View style={{flex:4,paddingLeft:20,paddingRight:20,height:'100%',flex:1,flexGrow:1,justifyContent:'center'}}>
+                    
+                    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+
+                        <View style={{flexBasis:'49%'}}>
+                            <Label htmlFor="firstname" style={styles.text}>Firstname</Label>
+                            <Input  value={firstname} onChangeText={(e)=>setFirstname(e)} style={styles.input}
+                                placeholder='Jhon'/>
+                        </View>
+                        
+
+                        <View style={{flexBasis:'49%'}}>
+                            <Label htmlFor="lastname" style={styles.text}>Lastname</Label>
+                            <Input  value={lastname} onChangeText={(e)=>setLastname(e)} style={styles.input}
+                                placeholder='Doe'/>
+                        </View>
+
+                    </View>
+
+                    <Spacer/>
+
                     <Label htmlFor="name" style={styles.text}>Email</Label>
                     <Input  value={email} onChangeText={(e)=>setEmail(e)} style={styles.input}
                          placeholder='example@email.com'/>
@@ -79,6 +101,7 @@ const Login = ({ navigation }) => {
                     <Input  value={birthday} onChangeText={(e)=>setBirthday(e)}
                         style={styles.input} placeholder='YYYY-MM-DD'/>
 
+                    <Spacer/>
                     <Spacer/>
 
                     <YStack>

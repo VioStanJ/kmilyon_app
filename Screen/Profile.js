@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { SafeAreaView,ScrollView,View,Text, ActivityIndicator } from 'react-native'
 import Container from '../Components/Container';
 import Content from '../Components/Content';
-import { Button, H4, H5, Image, Separator, Spacer } from 'tamagui';
+import { Button, H4, H5, H6, Image, Separator, Spacer } from 'tamagui';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/core';
 import { HOST, MEDIA } from '../const';
@@ -68,8 +68,8 @@ const Profile = () => {
                 <Image source={profile.avatar!=null?{uri:HOST+MEDIA+profile.avatar}:userDefault} style={{height:120,width:120,borderWidth:1,borderColor:'gray',marginBottom:6,borderRadius:100,}}/>
 
                 <H4>{profile.firstname} {profile.lastname}</H4>
-                <Text>{user.email}</Text>
-                <Text>{profile.phone}</Text>
+                <H6>{user.email}</H6>
+                <H6>{profile.phone}</H6>
 
                 <Spacer />
 

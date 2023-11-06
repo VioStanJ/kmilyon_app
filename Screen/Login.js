@@ -11,13 +11,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import {PRIMARY_DARK, styles} from './../styles'
 import bout from './../assets/img/bout.png';
 import Loading from '../Components/Loading'
-import RNRestart from 'react-native-restart';
 import axios from './../axiosInterceptor';
 
 const Login = ({ navigation }) => {
 
-    const [email,setEmail] = useState('viostanojguerrier@gmail.com')
-    const [password,setPassword] = useState('P@ss0011')
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
 
     const [open,openModal] = useState(false)
     

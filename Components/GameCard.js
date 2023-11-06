@@ -26,7 +26,7 @@ const GameCard = ({ game,is_new }) => {
             </View>
             <View style={{flexDirection:'column',paddingTop:5,justifyContent:'start',alignItems:'flex-start'}}>
                 <H4 style={{textTransform:'uppercase'}}>{game.title}</H4>
-                <Text>{game.mini_description}</Text>
+                <Text style={{color:'gray'}}>{game.mini_description}</Text>
 
                 <Spacer/>
                 <Button size="$4" theme="active" color={'white'} 
