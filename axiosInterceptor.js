@@ -7,11 +7,7 @@ axios.defaults.baseURL = URL;
 let token = '';
 
 export function init(token){
-  // AsyncStorage.getItem('access_token').then((access)=>{
-  //     token = JSON.parse(access);
-  console.warn("INIT",token);
-      request(token);
-  // });
+  request(token);
 }
 
 function request(token) {
@@ -19,7 +15,6 @@ function request(token) {
   axios.interceptors.request.use(
     (config) => {
       // Do something before the request is sent (e.g., add headers)
-      console.warn('TOK INTERCEPTOR',token);
       config.headers.Authorization = `Bearer ${token}`;    
       return config;
     },
