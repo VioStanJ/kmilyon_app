@@ -5,7 +5,6 @@ import { Input, Spacer, VisuallyHidden } from 'tamagui'
 import { Label } from 'tamagui'
 import { H1, H2, H3, H4, H5, H6, Heading } from 'tamagui'
 import Container from '../Components/Container'
-import axios from 'axios'
 import {URL} from '../const'
 import { ScrollView } from 'tamagui'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -13,6 +12,7 @@ import {PRIMARY_DARK, styles} from './../styles'
 import bout from './../assets/img/bout.png';
 import Loading from '../Components/Loading'
 import RNRestart from 'react-native-restart';
+import axios from './../axiosInterceptor';
 
 const Login = ({ navigation }) => {
 
@@ -29,7 +29,19 @@ const Login = ({ navigation }) => {
             .then((response)=>{
                 if(response.status === 200){
                     try {
-                        AsyncStorage.setItem('access_token',JSON.stringify(response.data.access));
+                        var token = response.data.access;
+
+                        axios.interceptors.request.use(
+                            (config) => {
+                              config.headers.Authorization = `Bearer ${token}`;    
+                              return config;
+                            },
+                            (error) => {
+                              // Handle request errors
+                              return Promise.reject(error);
+                            }
+                          );
+                        AsyncStorage.setItem('access_token',JSON.stringify(token));
                         AsyncStorage.setItem('refresh_token',JSON.stringify(response.data.refresh));
                         AsyncStorage.setItem('is_connect',"true");
                         setTimeout(()=>{

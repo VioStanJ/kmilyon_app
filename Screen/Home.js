@@ -49,14 +49,13 @@ export default Home = ({ navigation }) => {
 
     axios.get('/profile').then((response)=>{
       if(response.data.success){
+        
         AsyncStorage.setItem('user',JSON.stringify(response.data.user));
         setUser(response.data.user);
         AsyncStorage.setItem('profile',JSON.stringify(response.data.profile));
         setUserProfile(response.data.profile);
         AsyncStorage.setItem('account',JSON.stringify(response.data.account));
         setAccount(response.data.account);
-
-        console.warn("LOADED USER DATA");
 
       }
     }).catch((error)=>{

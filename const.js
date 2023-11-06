@@ -1,7 +1,7 @@
 import { Dimensions } from "react-native";
 
-export const HOST = 'http://54.242.117.47'
-export const URL = 'http://54.242.117.47/api/v1'
+export const HOST = 'http://54.91.162.0'
+export const URL = 'http://54.91.162.0/api/v1'
 export const MEDIA = '/static/';
 
 export function getWidth(){
