@@ -16,11 +16,23 @@ import axios from './../axiosInterceptor';
 
 const Login = ({ navigation }) => {
 
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
+    const [email,setEmail] = useState('viostanojguerrier@gmail.com')
+    const [password,setPassword] = useState('P@ss0011')
 
     const [open,openModal] = useState(false)
     
+    function setToken(token) {
+        axios.interceptors.request.use(
+            (config) => {
+              config.headers.Authorization = `Bearer ${token}`;    
+              return config;
+            },
+            (error) => {
+              // Handle request errors
+              return Promise.reject(error);
+            }
+          );
+    }
 
     function signIn() {
 
@@ -30,23 +42,14 @@ const Login = ({ navigation }) => {
                 if(response.status === 200){
                     try {
                         var token = response.data.access;
-
-                        axios.interceptors.request.use(
-                            (config) => {
-                              config.headers.Authorization = `Bearer ${token}`;    
-                              return config;
-                            },
-                            (error) => {
-                              // Handle request errors
-                              return Promise.reject(error);
-                            }
-                          );
+                        setToken(token);
                         AsyncStorage.setItem('access_token',JSON.stringify(token));
                         AsyncStorage.setItem('refresh_token',JSON.stringify(response.data.refresh));
                         AsyncStorage.setItem('is_connect',"true");
                         setTimeout(()=>{
                             openModal(false)
-                            RNRestart.restart();
+                            navigation.navigate('home');
+                            // RNRestart.restart();
                         },1000);
                     } catch (error) {
                         openModal(false)

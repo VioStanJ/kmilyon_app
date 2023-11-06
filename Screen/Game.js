@@ -15,7 +15,7 @@ const Game = ({ navigation }) => {
 
     function getCategories() {
         axios.get("/games/by/category").then((response)=>{
-            console.warn(response);
+            console.warn(response.data);
         }).catch((error)=>{
             console.warn(error);
         })

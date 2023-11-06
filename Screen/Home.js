@@ -17,7 +17,7 @@ import Ticket from './Ticket';
 import Game from './Game';
 import Wallet from './Wallet';
 import Profile from './Profile';
-import axios from './../axiosInterceptor';
+import axios,{init} from './../axiosInterceptor';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,14 +29,15 @@ export default Home = ({ navigation }) => {
   const [userProfile,setUserProfile] = useState({code:'',firstname:'',lastname:'',avatar:null,is_verified:false,sex:'',phone:''})
   const [account,setAccount] = useState({user: 25,point: 0,point_bonus: 0,active: false,status: true})
 
-  //  Init User Data
-
+  //  Init User Data for Offline
   const initUser = async () => {
+
       AsyncStorage.getItem('profile').then((profile)=>{
         if(profile != null){
           setUserProfile(JSON.parse(profile));
         }
       });
+
       AsyncStorage.getItem('account').then((account)=>{
         if(profile != null){
           setAccount(JSON.parse(account));
@@ -49,7 +50,7 @@ export default Home = ({ navigation }) => {
 
     axios.get('/profile').then((response)=>{
       if(response.data.success){
-        
+
         AsyncStorage.setItem('user',JSON.stringify(response.data.user));
         setUser(response.data.user);
         AsyncStorage.setItem('profile',JSON.stringify(response.data.profile));
@@ -67,9 +68,13 @@ export default Home = ({ navigation }) => {
   // Effect
   useEffect(() => {
 
-    // initUser();
+    initUser();
 
-    fetchProfile();
+    AsyncStorage.getItem('access_token').then((access)=>{
+      token = JSON.parse(access);
+      init(token);
+      fetchProfile();
+  });
 
     Animated.spring(tabOffsetValue, {
       toValue: getWidth() * 2,
@@ -78,6 +83,7 @@ export default Home = ({ navigation }) => {
       setTimeout(()=>{
         setOpacityHome(false)
     },10)
+
   }, []);
 
     // Animated Tab Indicator...

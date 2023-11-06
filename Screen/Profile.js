@@ -65,7 +65,7 @@ const Profile = () => {
         <Content>
             <View style={{flexDirection:'column',justifyContent:'center',alignItems:'center',paddingBottom:120}}>
     
-                <Image source={profile.avatar!=null?{uri:HOST+MEDIA+profile.avatar}:userDefault} style={[styles.avatar,{height:120,width:120,borderWidth:1,borderColor:'gray',marginBottom:6,borderRadius:100,}]}/>
+                <Image source={profile.avatar!=null?{uri:HOST+MEDIA+profile.avatar}:userDefault} style={{height:120,width:120,borderWidth:1,borderColor:'gray',marginBottom:6,borderRadius:100,}}/>
 
                 <H4>{profile.firstname} {profile.lastname}</H4>
                 <Text>{user.email}</Text>
