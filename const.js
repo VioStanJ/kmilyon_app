@@ -33,3 +33,7 @@ export function formatMoney(number){
   
     return formattedMoney;
   }
+
+  export function play(code,navigation) {
+    
+  }

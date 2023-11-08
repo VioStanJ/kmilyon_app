@@ -5,7 +5,7 @@ import game from './../assets/img/logo.png'
 import { PRIMARY, PRIMARY_DARK, SECONDARY } from '../styles';
 import { HOST, MEDIA } from '../const';
 
-const GameCard = ({ game,is_new }) => {
+const GameCard = ({ game,is_new,play }) => {
     return (
         <View style={{backgroundColor:'white',marginTop:50,borderRadius:8,elevation:2,padding:20,marginBottom:10}}>
             <View style={{alignSelf:'center',backgroundColor:'white',elevation:6,width:90,height:80,padding:5,borderRadius:6,position:'relative',top:-50}}>
@@ -32,7 +32,7 @@ const GameCard = ({ game,is_new }) => {
                 <Button size="$4" theme="active" color={'white'} 
                     backgroundColor={SECONDARY}
                     style={{fontWeight:'bolder',alignSelf:'center',width:200}}
-                            >PLAY</Button>
+                            onPress={play}>PLAY</Button>
 
             </View>
         </View>

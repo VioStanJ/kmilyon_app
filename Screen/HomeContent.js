@@ -56,10 +56,16 @@ const HomeContent = ({ navigation }) => {
           })
     }
 
+    function play(code) {
+        console.warn(code);
+    }
+
     useEffect(()=>{
         init();
         getHome();
-        setLoad(true)
+        setTimeout(()=>{
+            setLoad(true)
+        },1000)
     },[]);
 
     return (
@@ -78,7 +84,7 @@ const HomeContent = ({ navigation }) => {
             {
                 trends?
                     trends.map((item,index)=>{
-                        return <GameCard game={item} is_new={true} key={index} />;
+                        return <GameCard game={item} is_new={true} key={index} play={()=>play(item.code)}/>;
                     })
                 :null
             }

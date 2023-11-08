@@ -38,6 +38,10 @@ const Game = ({ navigation }) => {
         setCode(category.code)
         setGames(category.games)
     }
+
+    function play(code) {
+        console.warn(code);
+    }
     
     useEffect(()=>{
         init();
@@ -56,13 +60,14 @@ const Game = ({ navigation }) => {
                             horizontal={true}
                             data={categories}
                             keyExtractor={(item) => item.id}
-                            renderItem={({ item }) => <Category item={item} onPress={()=>showGame(item)} code={code}/>}
+                            renderItem={({ item }) => <Category item={item} onPress={()=>showGame(item)} 
+                                code={code}/>}
                             />
 
                         {
                             games?
                                 games.map((item,index)=>{
-                                    return <GameCard game={item} is_new={true} key={index} />;
+                                    return <GameCard game={item} is_new={true} key={index} play={()=>play(item.code)}/>;
                                 })
                             :null
                         }
