@@ -91,7 +91,7 @@ export default Home = ({ navigation }) => {
     return (
       <>
         {/* Header */}
-        <Header title={title} style={{backgroundColor:'red',}} user={userProfile} />
+        <Header title={title}  user={userProfile} />
         {/* <Button >GET USER</Button> */}
         <Tab.Navigator
             initialRouteName={'HomeContent'}

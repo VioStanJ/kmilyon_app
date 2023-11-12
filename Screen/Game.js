@@ -39,9 +39,8 @@ const Game = ({ navigation }) => {
         setGames(category.games)
     }
 
-    function play(code) {
-        navigation.navigate('play',{code})
-        console.warn(code);
+    function play(item) {
+        navigation.navigate('play',{"game":item})
     }
     
     useEffect(()=>{
@@ -68,7 +67,7 @@ const Game = ({ navigation }) => {
                         {
                             games?
                                 games.map((item,index)=>{
-                                    return <GameCard game={item} is_new={true} key={index} play={()=>play(item.code)}/>;
+                                    return <GameCard game={item} is_new={true} key={index} play={()=>play(item)}/>;
                                 })
                             :null
                         }

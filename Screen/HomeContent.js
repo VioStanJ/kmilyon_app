@@ -56,8 +56,8 @@ const HomeContent = ({ navigation }) => {
           })
     }
 
-    function play(code) {
-        navigation.navigate('play',{code})
+    function play(item) {
+        navigation.navigate('play',{item})
     }
 
     useEffect(()=>{
@@ -84,7 +84,7 @@ const HomeContent = ({ navigation }) => {
             {
                 trends?
                     trends.map((item,index)=>{
-                        return <GameCard game={item} is_new={true} key={index} play={()=>play(item.code)}/>;
+                        return <GameCard game={item} is_new={true} key={index} play={()=>play(item)}/>;
                     })
                 :null
             }
