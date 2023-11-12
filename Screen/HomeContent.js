@@ -57,7 +57,7 @@ const HomeContent = ({ navigation }) => {
     }
 
     function play(code) {
-        console.warn(code);
+        navigation.navigate('play',{code})
     }
 
     useEffect(()=>{

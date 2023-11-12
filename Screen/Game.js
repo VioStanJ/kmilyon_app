@@ -40,6 +40,7 @@ const Game = ({ navigation }) => {
     }
 
     function play(code) {
+        navigation.navigate('play',{code})
         console.warn(code);
     }
     
