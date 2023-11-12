@@ -40,7 +40,7 @@ const Game = ({ navigation }) => {
     }
 
     function play(item) {
-        navigation.navigate('play',{"game":item})
+        navigation.navigate('overview',{"game":item})
     }
     
     useEffect(()=>{

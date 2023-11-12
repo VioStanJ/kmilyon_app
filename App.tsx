@@ -15,6 +15,7 @@ import { TamaguiProvider } from 'tamagui'
 import config from './tamagui.config'
 import SignUp from './Screen/SignUp';
 import PlayGame from './Screen/PlayGame';
+import Overview from './Screen/Overview';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,7 @@ function App() {
             <Stack.Screen name="home" component={Home} options={{headerShown: false}}/>
             <Stack.Screen name="login" component={Login} options={{headerShown: false}}/>
             <Stack.Screen name="signup" component={SignUp} options={{headerShown: false}}/>
+            <Stack.Screen name="overview" component={Overview} options={{headerShown: false}}/>
             <Stack.Screen name="play" component={PlayGame} options={{headerShown: false}}/>
           </Stack.Navigator>
         </NavigationContainer>

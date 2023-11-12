@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView,ScrollView,View,Image, ActivityIndicator } from 'react-native'
+import { SafeAreaView,ScrollView,View,Image, ActivityIndicator, useWindowDimensions } from 'react-native'
 import Container from '../Components/Container';
 import { Header } from '../Components/Header';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RandomGame from '../Components/RandomGame';
 import { HOST, MEDIA } from '../const';
-import { H2, H5 } from 'tamagui';
+import { Button, H2, H3, H5, Separator, Spacer } from 'tamagui';
 import { H4 } from 'tamagui';
+import { Text } from 'tamagui';
+import RenderHtml from 'react-native-render-html';
+import { SECONDARY } from '../styles';
 
-const PlayGame = ({ route,navigation }) => {
+const Overview = ({ route,navigation }) => {
 
     const [loaded,setLoad] = useState(false);
     const [profile,setUserProfile] = useState({code:'',firstname:'',lastname:'',avatar:null,is_verified:false,sex:'',phone:''})
+    const { width } = useWindowDimensions();
 
     //  Init User Data for Offline
     function init(){
@@ -22,16 +26,10 @@ const PlayGame = ({ route,navigation }) => {
         });
     }
 
-    const getGame = (game) => {
-        
-        switch (game.code) {
-            case "DBL_WIN":
-                return <RandomGame game={game} />
-            // case ""
-            default:
-                return <RandomGame game={game} />
-        }
+    function play(){
+        navigation.navigate('play',{"game":route.params.game})
     }
+
     useEffect(()=>{
         console.warn(route.params.game);
         init();
@@ -47,20 +45,32 @@ const PlayGame = ({ route,navigation }) => {
                 <View>
                     <Header title="Game Play"  user={profile} />
 
-                    <View>
+                    <View style={{flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:30}}>
                         <View style={{alignSelf:'center',backgroundColor:'white',elevation:6,width:90,height:80,padding:5,borderRadius:6,position:'relative'}}>
                             <Image source={{uri:HOST+MEDIA+route.params.game.image}} style={{width:70,height:70}}/>
                         </View>
+                        <Spacer/>
+                        <H3>{route.params.game.title}</H3>
 
-                        <H4>{route.params.game.title}</H4>
+                        {/* <Text>{route.params.game.description}</Text> */}
+                    
+                        <View style={{width:'100%',paddingLeft:20,paddingRight:20,marginBottom:120}}>
+                            <RenderHtml contentWidth={width}
+                                source={{html: route.params.game.description}}/>
+                        </View>
+
+                        <Separator alignSelf="stretch" />
                     </View>
-                    {getGame(route.params.game)}
                 </View>
             </ScrollView>
+            <Button size="$4" theme="active" color={'white'} 
+                            backgroundColor={SECONDARY}
+                            style={{fontWeight:'bolder',alignSelf:'center',width:200,position:'absolute',bottom:20}}
+                                    onPress={play}>PLAY</Button>
         </Container>
         :
         <ActivityIndicator size="small" color="#0000ff" />
     )
 }
 
-export default PlayGame;
+export default Overview;
