@@ -19,6 +19,7 @@ const PlayGame = ({ route,navigation }) => {
     }
 
     useEffect(()=>{
+        console.warn(route.params);
         init();
         setTimeout(()=>{
             setLoad(true)

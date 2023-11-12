@@ -57,7 +57,7 @@ const HomeContent = ({ navigation }) => {
     }
 
     function play(item) {
-        navigation.navigate('play',{item})
+        navigation.navigate('play',{'game':item})
     }
 
     useEffect(()=>{
