@@ -15,8 +15,8 @@ import axios from './../axiosInterceptor';
 
 const Login = ({ navigation }) => {
 
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
+    const [email,setEmail] = useState('viostanojguerrier@gmail.com')
+    const [password,setPassword] = useState('P@ss0011')
 
     const [open,openModal] = useState(false)
     
@@ -45,7 +45,7 @@ const Login = ({ navigation }) => {
                         AsyncStorage.setItem('refresh_token',JSON.stringify(response.data.refresh));
                         AsyncStorage.setItem('is_connect',"true");
 
-                        ToastAndroid.show(response.data.message,ToastAndroid.SHORT)
+                        ToastAndroid.show("Welcome !",ToastAndroid.SHORT)
 
                         setTimeout(()=>{
                             openModal(false)
