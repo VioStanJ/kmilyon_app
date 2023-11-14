@@ -31,7 +31,6 @@ const Overview = ({ route,navigation }) => {
     }
 
     useEffect(()=>{
-        console.warn(route.params.game);
         init();
         setTimeout(()=>{
             setLoad(true)
@@ -43,7 +42,7 @@ const Overview = ({ route,navigation }) => {
         <Container>
             <ScrollView>
                 <View>
-                    <Header title="Game Play"  user={profile} />
+                    <Header title="Overview"  user={profile} />
 
                     <View style={{flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:30}}>
                         <View style={{alignSelf:'center',backgroundColor:'white',elevation:6,width:90,height:80,padding:5,borderRadius:6,position:'relative'}}>
@@ -52,8 +51,6 @@ const Overview = ({ route,navigation }) => {
                         <Spacer/>
                         <H3>{route.params.game.title}</H3>
 
-                        {/* <Text>{route.params.game.description}</Text> */}
-                    
                         <View style={{width:'100%',paddingLeft:20,paddingRight:20,marginBottom:120}}>
                             <RenderHtml contentWidth={width}
                                 source={{html: route.params.game.description}}/>
