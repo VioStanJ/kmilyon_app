@@ -15,8 +15,8 @@ import axios from './../axiosInterceptor';
 
 const Login = ({ navigation }) => {
 
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
+    const [email,setEmail] = useState('viostanojguerrier@gmail.com')
+    const [password,setPassword] = useState('P@ss0011')
 
     const [open,openModal] = useState(false)
 
