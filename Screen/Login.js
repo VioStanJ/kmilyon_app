@@ -19,19 +19,6 @@ const Login = ({ navigation }) => {
     const [password,setPassword] = useState('')
 
     const [open,openModal] = useState(false)
-    
-    // function setToken(token) {
-    //     axios.interceptors.request.use(
-    //         (config) => {
-    //           config.headers.Authorization = `Bearer ${token}`;    
-    //           return config;
-    //         },
-    //         (error) => {
-    //           // Handle request errors
-    //           return Promise.reject(error);
-    //         }
-    //       );
-    // }
 
     function signIn() {
 
@@ -45,7 +32,7 @@ const Login = ({ navigation }) => {
                         AsyncStorage.setItem('refresh_token',JSON.stringify(response.data.refresh));
                         AsyncStorage.setItem('is_connect',"true");
 
-                        ToastAndroid.show(response.data.message,ToastAndroid.SHORT)
+                        ToastAndroid.show("Welcome !",ToastAndroid.SHORT)
 
                         setTimeout(()=>{
                             openModal(false)
